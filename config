@@ -1,0 +1,189 @@
+# My i3 configuration
+
+# Default Mod Button: Windows key
+set $mod Mod4
+
+# Wallpaper
+exec --no-startup-id nitrogen --restore
+
+# Default Layout
+workspace_layout tabbed
+
+# restart i3 inplace 
+bindsym $mod+Shift+r restart
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+Shift+q layout tabbed
+bindsym $mod+Shift+w layout toggle split
+bindsym $mod+Shift+e layout stacking
+
+# Change Focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Workspaces
+
+set $ws1 
+set $ws2 
+set $ws3 
+set $ws4 
+set $ws5 
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+
+# Move focused container to workspace
+bindsym $mod+Ctrl+1 move container to workspace $ws1
+bindsym $mod+Ctrl+2 move container to workspace $ws2
+bindsym $mod+Ctrl+3 move container to workspace $ws3
+bindsym $mod+Ctrl+4 move container to workspace $ws4
+bindsym $mod+Ctrl+5 move container to workspace $ws5
+
+# Fonts
+font pango:Iosevka Nerd Font 9
+
+# Window Colours
+set $bgcolor     #2E3440
+set $ibgcolor    #4C566A
+set $textcolor   #D8DEE9
+set $ftextcolor  #88C0D0
+set $ubgcolor    #BF616A
+
+# Theme colors
+# class                      border   background    text      indicator   
+  client.focused            $ibgcolor  $ibgcolor  $ftextcolor $ibgcolor
+  client.focused_inactive   $ibgcolor  $bgcolor   $textcolor  $ibgcolor
+  client.unfocused          $ibgcolor  $bgcolor   $textcolor  $ibgcolor
+  client.urgent             $ubgcolor  $ubgcolor  $textcolor  $ubgcolor
+  
+# start a $myTerm
+set $myTerm alacritty
+bindsym $mod+Return exec $myTerm
+
+# Gnome Polkit
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# Polybar
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+  
+# Applications
+
+# Apperance
+bindsym $mod+a exec lxappearance
+
+# Browser
+bindsym $mod+b exec ungoogled-chromium
+
+# CPU-Memory
+bindsym $mod+c exec $myTerm -e 'htop'
+
+# Dmenu
+#bindsym $mod+d exec dmenu_run
+
+# File Manager
+bindsym $mod+f exec thunar
+
+# Illusion
+#bindsym $mod+i exec 
+
+# Gnome Settings
+bindsym $mod+g exec gnome-control-center
+
+# Lockscreen
+#bindsym $mod+l exec $myTerm -e 'slock'
+
+# Music
+bindsym $mod+m exec $myTerm -e 'mocp'
+
+# Once Again
+bindsym $mod+o exec reboot
+
+# Pamac
+bindsym $mod+p exec pamac-manager
+
+# Quit
+bindsym $mod+q exec shutdown now
+
+# Rofi Menu
+bindsym $mod+r exec rofi -show run
+
+# Spotify
+bindsym $mod+s exec flatpak run com.spotify.Client
+
+# Text Editor
+bindsym $mod+t exec gedit
+
+# Video
+bindsym $mod+v exec celluloid
+
+# Wallpaper
+bindsym $mod+w exec nitrogen
+
+# Close a Window
+bindsym $mod+x kill
+
+# Zoom
+bindsym $mod+z fullscreen toggle
+
+# Open specific applications in floating mode
+for_window [title="File Transfer*"] floating enable
+for_window [class="Lightdm-gtk-greeter-settings"] floating enable
+for_window [class="Lxappearance"] floating enable sticky enable border normal
+for_window [class="Nitrogen"] floating enable sticky enable border normal
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+        position top                  # Position should be 'bottom' or 'top'.
+        status_command i3blocks -c /home/dollar/.config/i3blocks/i3blocks.conf
+        colors {
+                background $bgcolor
+                separator #ffb86c
+
+#                                       border    background   text 
+                focused_workspace      $ibgcolor  $ibgcolor   $ftextcolor
+                inactive_workspace     $ibgcolor  $bgcolor    $textcolor
+                urgent_workspace       $ubgcolor  $ubgcolor   $textcolor
+    }
+}
+
+# Volume
+bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 10%+ unmute
+bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 10%- unmute
+bindsym XF86AudioMute exec amixer -D pulse sset Master toggle
+
+# Brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
